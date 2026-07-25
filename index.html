@@ -1,30 +1,157 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-theme="dark">
 
 <head>
   <meta charset="utf-8">
-  <title>Drum Kit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drum Kit — Play & Create</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
 </head>
 
 <body>
 
-  <h1 id="title">Drum 🥁 Kit</h1>
-  <div class="set">
-    <button class="w drum">w</button>
-    <button class="a drum">a</button>
-    <button class="s drum">s</button>
-    <button class="d drum">d</button>
-    <button class="j drum">j</button>
-    <button class="k drum">k</button>
-    <button class="l drum">l</button>
+  <!-- =============================================================== -->
+  <!--  LOADING SCREEN                                                  -->
+  <!--  Displays a clean spinner while assets load, then fades out.     -->
+  <!--  Improves perceived performance and feels more polished.         -->
+  <!-- =============================================================== -->
+  <div id="loader">
+    <div class="spinner"></div>
   </div>
 
+  <!-- =============================================================== -->
+  <!--  SCROLL PROGRESS INDICATOR                                       -->
+  <!--  A slim animated bar across the very top of the page that fills  -->
+  <!--  as the user scrolls, providing a subtle visual cue of position. -->
+  <!-- =============================================================== -->
+  <div id="scroll-progress"></div>
 
-  <footer>
-    Made with ❤️ in London.
+  <!-- =============================================================== -->
+  <!--  STICKY NAVIGATION                                               -->
+  <!--  Fixed header with glassmorphism blur, smooth-scroll links,      -->
+  <!--  theme toggle, and a hamburger menu on mobile devices.           -->
+  <!--  Demonstrates: backdrop-filter, flexbox layout, media queries.   -->
+  <!-- =============================================================== -->
+  <header>
+    <nav>
+      <a href="#hero" class="nav-logo">Drum<span>Kit</span></a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#drum-kit">Play</a></li>
+        <li><a href="#footer">About</a></li>
+        <li><button id="theme-toggle" aria-label="Toggle theme">☀️</button></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </nav>
+  </header>
+
+  <!-- =============================================================== -->
+  <!--  HERO SECTION                                                    -->
+  <!--  Full-viewport section with animated gradient background,        -->
+  <!--  floating particle canvas, bold headline, subtitle, and a CTA    -->
+  <!--  button that scrolls smoothly down to the drum kit.              -->
+  <!--  Demonstrates: CSS keyframe animations, canvas API, gradient bg. -->
+  <!-- =============================================================== -->
+  <section id="hero">
+    <canvas id="particle-canvas"></canvas>
+    <div class="hero-content">
+      <span class="hero-badge">Interactive Experience</span>
+      <h1 class="hero-title">
+        Play the <span class="highlight">Beat</span>
+      </h1>
+      <p class="hero-subtitle">
+        An interactive drum kit built with HTML, CSS, and JavaScript.
+        Use your keyboard or mouse to make some noise.
+      </p>
+      <a href="#drum-kit" class="btn-cta">Start Playing</a>
+    </div>
+  </section>
+
+  <!-- =============================================================== -->
+  <!--  DRUM KIT SECTION                                                -->
+  <!--  A responsive grid of drum pads with images, key labels, and     -->
+  <!--  glassmorphism styling. Each pad plays a unique sound on click   -->
+  <!--  or matching keypress. Supports ripple effects, glow, and hover  -->
+  <!--  animations. Preserves original keyboard-to-sound mappings.      -->
+  <!-- =============================================================== -->
+  <section id="drum-kit" class="section">
+    <div class="section-header reveal">
+      <h2>Drum Kit</h2>
+      <p>Click a pad or press the corresponding key to play a sound.</p>
+    </div>
+
+    <div class="drum-grid reveal">
+      <!-- Drum pads with data attributes for sound mapping -->
+      <div class="drum-wrapper">
+        <button class="drum" data-key="w" data-sound="tom-1">
+          <img src="images/tom1.png" alt="Tom 1">
+          <span class="key-label">W</span>
+        </button>
+      </div>
+
+      <div class="drum-wrapper">
+        <button class="drum" data-key="a" data-sound="tom-2">
+          <img src="images/tom2.png" alt="Tom 2">
+          <span class="key-label">A</span>
+        </button>
+      </div>
+
+      <div class="drum-wrapper">
+        <button class="drum" data-key="s" data-sound="tom-3">
+          <img src="images/tom3.png" alt="Tom 3">
+          <span class="key-label">S</span>
+        </button>
+      </div>
+
+      <div class="drum-wrapper">
+        <button class="drum" data-key="d" data-sound="tom-4">
+          <img src="images/tom4.png" alt="Tom 4">
+          <span class="key-label">D</span>
+        </button>
+      </div>
+
+      <div class="drum-wrapper">
+        <button class="drum" data-key="j" data-sound="snare">
+          <img src="images/snare.png" alt="Snare">
+          <span class="key-label">J</span>
+        </button>
+      </div>
+
+      <div class="drum-wrapper">
+        <button class="drum" data-key="k" data-sound="crash">
+          <img src="images/crash.png" alt="Crash">
+          <span class="key-label">K</span>
+        </button>
+      </div>
+
+      <div class="drum-wrapper">
+        <button class="drum" data-key="l" data-sound="kick-bass">
+          <img src="images/kick.png" alt="Kick Bass">
+          <span class="key-label">L</span>
+        </button>
+      </div>
+    </div>
+
+    <p class="instructions reveal">
+      Press <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> <kbd>J</kbd> <kbd>K</kbd> <kbd>L</kbd>
+      or click the pads above to play.
+    </p>
+  </section>
+
+  <!-- =============================================================== -->
+  <!--  FOOTER                                                          -->
+  <!--  Clean footer with attribution and GitHub link, demonstrating   -->
+  <!--  simple semantic layout completion.                              -->
+  <!-- =============================================================== -->
+  <footer id="footer">
+    <p>Made with ❤️ &nbsp;|&nbsp;
+      <a href="https://github.com" target="_blank" rel="noopener">View on GitHub</a>
+    </p>
   </footer>
+
   <script src="index.js"></script>
 </body>
 
